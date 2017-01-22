@@ -24,17 +24,23 @@ plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
 plt.legend()
 plt.xlabel("bumpiness")
 plt.ylabel("grade")
-plt.show()
+# plt.show()
 ################################################################################
 
 
 ### your code here!  name your classifier object clf if you want the 
 
-from sklearn import tree
+from sklearn.model_selection import cross_val_score
+from sklearn.datasets import make_blobs
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.tree import DecisionTreeClassifier
+
 from sklearn.metrics import accuracy_score
 from time import time
 
-clf = tree.DecisionTreeClassifier(min_samples_split=40)
+# clf = RandomForestClassifier(n_estimators=10, max_depth=None, min_samples_split=2, random_state=0)
+clf = ExtraTreesClassifier(n_estimators=10, max_depth=None, min_samples_split=2, random_state=0)
 
 t0 = time()
 clf.fit(features_train, labels_train)
@@ -44,7 +50,6 @@ t0 = time()
 predicts = clf.predict(features_test)
 print "predict time:", round(time()-t0, 3), "s"
 
-# print predicts
 t0 = time()
 print "Accuracy: %f" % accuracy_score(labels_test, predicts)
 print "accuracy time:", round(time()-t0, 3), "s"

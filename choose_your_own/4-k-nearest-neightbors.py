@@ -24,30 +24,30 @@ plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
 plt.legend()
 plt.xlabel("bumpiness")
 plt.ylabel("grade")
-plt.show()
+# plt.show()
 ################################################################################
 
 
 ### your code here!  name your classifier object clf if you want the 
 
-from sklearn import tree
+from sklearn.neighbors import KNeighborsClassifier
+import numpy as np
 from sklearn.metrics import accuracy_score
 from time import time
 
-clf = tree.DecisionTreeClassifier(min_samples_split=40)
+clf = KNeighborsClassifier(n_neighbors=1)
 
 t0 = time()
 clf.fit(features_train, labels_train)
-print "training time:", round(time()-t0, 3), "s"
+# print "training time:", round(time()-t0, 3), "s"
 
 t0 = time()
 predicts = clf.predict(features_test)
-print "predict time:", round(time()-t0, 3), "s"
+# print "predict time:", round(time()-t0, 3), "s"
 
-# print predicts
 t0 = time()
 print "Accuracy: %f" % accuracy_score(labels_test, predicts)
-print "accuracy time:", round(time()-t0, 3), "s"
+# print "accuracy time:", round(time()-t0, 3), "s"
 
 ### visualization code (prettyPicture) to show you the decision boundary
 try:

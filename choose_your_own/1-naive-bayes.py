@@ -24,17 +24,17 @@ plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
 plt.legend()
 plt.xlabel("bumpiness")
 plt.ylabel("grade")
-plt.show()
+# plt.show()
 ################################################################################
 
 
 ### your code here!  name your classifier object clf if you want the 
 
-from sklearn import tree
+from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 from time import time
 
-clf = tree.DecisionTreeClassifier(min_samples_split=40)
+clf = GaussianNB()
 
 t0 = time()
 clf.fit(features_train, labels_train)
